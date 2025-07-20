@@ -1,0 +1,205 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  ARENAMASTER
+  USER
+}
+
+enum BookingStatus {
+  PENDING
+  HOUSEFULL
+  CANCELLED
+}
+
+enum SportType {
+  Badminton
+  Football
+  Cricket
+  Tennis
+  Basketball
+  Valorant
+}
+
+// ========== USER ==========
+
+model UserLocal {
+  userId    String @id @default(cuid())
+  role      Role   @default(USER)
+  username  String @unique
+  password  String
+  firstName String
+  lastName  String
+
+  authId String
+  user   User   @relation(fields: [authId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  totalBooked Int      @default(0)
+  totalPlayed Int      @default(0)
+
+  participantIn BookParticipant[]
+  bookingsMade  BookingCard[]     @relation("UserBookings")
+  bio           String
+
+  @@map("user_local")
+}
+
+// ========== SPORTS ARENA ==========
+
+model SportsArena {
+  arenaId         String    @id @default(cuid())
+  sportsArena     String
+  availableSports String[] // e.g. ["Football", "Tennis"]
+  isOnline        Boolean   @default(false)
+  latitude        Float
+  longitude       Float
+  contactInfo     String
+  amenities       Amenity[] // Enum array
+  createdAt       DateTime  @default(now())
+  address         String
+
+  zones ArenaZone[]
+
+  @@map("sports_arena")
+}
+
+enum Amenity {
+  ChangingRoom
+  Bathroom
+  DrinkingWater
+  SnackPlace
+  Parking
+}
+
+// ========== ARENA ZONE ==========
+
+model ArenaZone {
+  zoneId            String      @id @default(cuid())
+  zoneName          String
+  arena             SportsArena @relation(fields: [arenaId], references: [arenaId])
+  arenaId           String
+  sportsType        SportType
+  capacityOfPlayers Int
+  isIndoor          Boolean
+  pricePerHour      Float
+  availableAt30s    String[] // ["12:30", "12:30", "13:00"]
+
+  bookings BookingCard[]
+
+  @@map("arena_zone")
+}
+
+// ========== BOOKING ==========
+
+model BookingCard {
+  bookId        String        @id @default(cuid())
+  bookGame      SportType
+  bookedArena   ArenaZone     @relation(fields: [arenaZoneId], references: [zoneId])
+  arenaZoneId   String
+  fromTime      DateTime
+  toTime        DateTime
+  bookingStatus BookingStatus @default(PENDING)
+  playersToFill Int
+
+  participants BookParticipant[]
+
+  bookedBy   UserLocal @relation("UserBookings", fields: [bookedById], references: [userId])
+  bookedById String
+
+  @@map("booking_card")
+}
+
+// ========== PARTICIPANTS ==========
+
+model BookParticipant {
+  participantId String      @id @default(cuid())
+  userLocal     UserLocal   @relation(fields: [userId], references: [userId])
+  userId        String
+  booking       BookingCard @relation(fields: [bookingId], references: [bookId])
+  bookingId     String
+
+  @@unique([userId, bookingId])
+  @@map("book_participant")
+}
+
+model User {
+  id        String   @id
+  createdAt DateTime
+  updatedAt DateTime
+
+  name          String
+  email         String  @unique
+  emailVerified Boolean
+  image         String?
+
+  sessions  Session[]
+  accounts  Account[]
+  userLocal UserLocal[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id
+  createdAt DateTime
+  updatedAt DateTime
+
+  expiresAt DateTime
+  token     String   @unique
+  ipAddress String?
+  userAgent String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id        String   @id
+  createdAt DateTime
+  updatedAt DateTime
+
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("accounts")
+}
+
+model Verification {
+  id        String    @id
+  createdAt DateTime?
+  updatedAt DateTime?
+
+  identifier String
+  value      String
+  expiresAt  DateTime
+
+  @@map("verifications")
+}

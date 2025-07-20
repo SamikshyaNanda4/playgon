@@ -1,103 +1,90 @@
-import Image from "next/image";
+"use client"
+import { motion } from "framer-motion";
+import {
+  Code,
+  GitBranch,
+  List,
+  Play,
+  Sparkles,
+  WandSparkles,
+} from "lucide-react";
 
-export default function Home() {
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { div } from "framer-motion/client";
+import { AnimatedTag } from '@/my-components/animated-tags';
+import { TagItem } from '@/types/sports';
+
+const Page = () => {
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div>
+      <div className="xl:ml-[220px] ms-[20px] p-4 h-screen overflow-y-auto bg-[#f1f1f1]">
+        <motion.section
+          className="py-10"
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeIn" }}
+        >
+          <div className="container">
+            <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+              <h1 className="mb-2 text-4xl font-semibold text-pretty lg:text-5xl">
+                Find the Arena of your choice
+              </h1>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+              <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-3">
+
+
+                {[
+                  { sportsType: "cricket", icon: <Code className="size-4" />, img: "https://www.gwsportsapp.in/media/ground-images/gallery/MC4yNjg0MzkwMCAxNTk3OTA4MDY4.jpeg" },
+                  { sportsType: "football", icon: <Play className="size-4" />, img: "https://enrollacademy.com/wp-content/uploads/2022/09/indoor-soccer.jpg" },
+                  { sportsType: "tennis", icon: <GitBranch className="size-4" />, img: "https://knowledgegk.com/wp-content/uploads/2024/02/Box-Cricket.jpg" },
+                  { sportsType: "basketball", icon: <List className="size-4" />, img: "https://i.pinimg.com/originals/f0/68/17/f06817a3672704b4e429821ea0b0e929.jpg" },
+                  { sportsType: "cricket", icon: <WandSparkles className="size-4" />, img: "https://tse2.mm.bing.net/th/id/OIP.fSnfQSkhFdCE3vLdMy1gVAHaEK?pid=Api&P=0&h=220" },
+                  { sportsType: "football", icon: <Sparkles className="size-4" />, img: "https://i.pinimg.com/736x/eb/e2/6a/ebe26a3a75c71ffd7867c8a911376c5f.jpg" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.1 }}
+                  >
+                    <div className="relative"> {/* This makes the tag stay in place */}
+                      {/* Animated top-right tag */}
+                      <AnimatedTag item={item} index={i} />
+
+                      <Card className="shadow-2xl shadow-sky-950">
+                        <CardHeader className="pb-1">{item.icon}</CardHeader>
+                        <CardContent className="text-left">
+                          <h2 className="mb-1 text-lg font-semibold">Card Title</h2>
+                          <p className="leading-snug text-muted-foreground">
+                            Lorem ipsum dolor sit amet consectetur.
+                          </p>
+                        </CardContent>
+                        <CardFooter className="justify-end pr-6 pb-0">
+                          <img
+                            className="h-40 w-full rounded-tl-md object-cover object-center"
+                            src={item.img}
+                            alt="placeholder"
+                          />
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  </motion.div>
+
+                ))}
+
+              </div>
+            </div>
+          </div>
+        </motion.section>
+      </div>
     </div>
   );
-}
+};
+
+export default Page;
