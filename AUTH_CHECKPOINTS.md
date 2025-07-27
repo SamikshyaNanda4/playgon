@@ -56,3 +56,29 @@
     -Showcase `onError`
     -Sign In User
 -FINISH PART 1
+
+
+---Roles Part
+Roles(Custom Method)
+Prisma
+-Add UserRole Enum
+- Push changes `npx prisma db push`
+- User
+    -Truncate Tables
+    -Create new User
+-Profile PT1
+    -Show role is not typed in `session.user`
+    -OPTION - `input` option
+    -Profile PT2
+        -Show role is now typed and added to `session.user`
+        -ISSUE: Client Session has no Context of the Role
+        -Cute circle on  `get-started-button-tsx`
+        -InferAdditionalFields plugin on Client  
+
+    `ADMIN PANEL`
+    -Create Page/ Link
+    -Manually Change Role
+    -Update Middleware
+    -Guard `/admin/dashboard`
+    -List Users with prisma Query
+-DataBase Hooks

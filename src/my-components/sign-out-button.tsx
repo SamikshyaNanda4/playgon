@@ -1,21 +1,30 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { ButtonWithLoader } from "./button-with-loader"
 import { signOut } from "@/lib/auth.client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { useState } from "react"
 
 
 export const SignOutButton = () => {
     const router = useRouter()
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     async function handleClick() {
         await signOut({
             fetchOptions: {
+                onRequest: () => {
+                    setIsLoading(true)
+                },
+                onResponse: () => {
+                    setIsLoading(false)
+                },
                 onError: (ctx) => {
-                    toast.error(ctx.error.message)
+                    toast.error(ctx.error.message || "Logout  failed!")
                 },
                 onSuccess: () => {
+                    toast.error("You have logged out! See you soon.")
                     router.push("/auth/login")
                 }
             }
@@ -25,9 +34,16 @@ export const SignOutButton = () => {
     return (
         <>
             <div className="mx-3.5 my-3.5">
-                <Button onClick={handleClick} size="sm" variant="destructive" className="cursor-pointer">
+                <ButtonWithLoader
+                    onClick={handleClick}
+                    variant="destructive"
+                    size="sm"
+                    className="cursor-pointer"
+                    isLoading={isLoading}
+                >
                     Sign Out
-                </Button></div>
+                </ButtonWithLoader>
+            </div>
         </>
     )
 }
