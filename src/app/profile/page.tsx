@@ -7,14 +7,25 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const Page = async () => {
+    const headersList = await headers()
 
     const session = await auth.api.getSession({
-        headers: await headers()
+        headers: headersList
     })
 
     if (!session) {
         redirect("/auth/login")
     }
+
+    const FULL_POST_ACCESS = await auth.api.userHasPermission({
+        headers: headersList,
+        body: {
+            // userId: session.user.id, if headers not provide
+            permissions: {
+                posts: ["update", "delete"]
+            }
+        }
+    })
 
 
     return (
@@ -31,6 +42,11 @@ const Page = async () => {
                     )
                 }
                 <SignOutButton />
+                <div className="text-2x font-bold">Permissions--</div>
+                <div className="space-x-4">
+                    <Button size='sm'>MANAGE OWN POSTS</Button>
+                    <Button size='sm' disabled={!FULL_POST_ACCESS.success}>MANAGE ALL POSTS</Button>
+                </div>
             </div>
             <pre className="text-sm overflow-clip">
                 {JSON.stringify(session, null, 2)}

@@ -7,6 +7,7 @@ import { headers } from "next/headers"
 import { isRedirectError } from "next/dist/client/components/redirect-error"
 import { revalidatePath } from "next/cache"
 
+
 export async function deleteUserAction({ userId }: { userId: string }) {
     const headersList = await headers()
 
@@ -16,7 +17,7 @@ export async function deleteUserAction({ userId }: { userId: string }) {
 
     if (!session) throw new Error("Unauthorized User")
 
-    if (session.user.role !== "ADMIN" || session.user.id === userId) {
+    if (session.user.role !== "ADMIN") {
         throw new Error("Forbidden User")
     }
     try {
@@ -26,13 +27,14 @@ export async function deleteUserAction({ userId }: { userId: string }) {
                 id: userId,
                 OR: [
                     { role: "USER" },
-                    { role: "ARENAMASTER" }
+                    { role: "ARENAMASTER" },
+                    { role: "ADMIN" }
                 ]
             }
         })
         if (session.user.id === userId) {
             await auth.api.signOut({
-                headers: headersList
+                headers: headersList //AWAIT function is headerslist
             });
             redirect("/auth/login")
         }

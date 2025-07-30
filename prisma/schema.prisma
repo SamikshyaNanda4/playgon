@@ -149,6 +149,10 @@ model User {
   image         String?
   role          Role    @default(USER)
 
+  banned     Boolean?
+  banReason  String?
+  banExpires DateTime?
+
   sessions  Session[]
   accounts  Account[]
   userLocal UserLocal[]
@@ -166,8 +170,9 @@ model Session {
   ipAddress String?
   userAgent String?
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  impersonatedBy String?
 
   @@map("sessions")
 }

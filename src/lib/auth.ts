@@ -8,6 +8,9 @@ import { hashPassword, verifyPassword } from "@/lib/argon2";
 import { nextCookies } from "better-auth/next-js";
 import { APIError, createAuthMiddleware } from "better-auth/api";
 import { getValidDomains, normalizeName } from "@/lib/utils";
+import { Role } from "@/generated/prisma";
+import { admin } from "better-auth/plugins"
+import { ac, roles } from "@/lib/permissions"
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -45,10 +48,27 @@ export const auth = betterAuth({
             }
         })
     },
+    databaseHooks: {
+        user: {
+            create: {
+                before: async (user) => {
+                    const ADMIN_EMAILS = process.env.ADMIN_EMAILS?.split(";") ?? []
+                    if (ADMIN_EMAILS.includes(user.email)) {
+                        return { data: { ...user, role: "ADMIN" } }
+                    }
+                    return { data: user }
+                },
+                after: async (user) => {
+                    //user_local db registration addition window
+                    console.log(user, "USER CREATED SUCCESSFULLY")
+                }
+            }
+        }
+    },
     user: {
         additionalFields: {
             role: {
-                type: ["USER", "ADMIN", "ARENAMASTER"],
+                type: ["USER", "ADMIN", "ARENAMASTER"] as Array<Role>,
                 input: false
             }
         }
@@ -61,7 +81,12 @@ export const auth = betterAuth({
             generateId: false
         },
     },
-    plugins: [nextCookies()] // this make you remove the signInEmail Async server actions cookies logic as it handles solo
+    plugins: [nextCookies(), admin({
+        defaultRole: Role.USER,
+        adminRoles: [Role.ADMIN],
+        ac,
+        roles
+    })] // this make you remove the signInEmail Async server actions cookies logic as it handles solo-->talking about nextCookies() here
 });
 
 export type ErrorCode = keyof typeof auth.$ERROR_CODES | "UNKNOWN"

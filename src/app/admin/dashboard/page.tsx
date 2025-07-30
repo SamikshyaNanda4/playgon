@@ -4,22 +4,32 @@ import { ReturnButton } from "@/my-components/return-button";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { div } from "framer-motion/client";
-import { prisma } from "@/lib/prisma";
+// import { prisma } from "@/lib/prisma";
 import { Trash } from "lucide-react";
 import { ButtonWithLoader } from "@/my-components/button-with-loader";
 import { DeleteButton, PlaceholderDeleteUserButton } from "@/my-components/delete-button";
+import { UserRoleSelect } from "@/my-components/user-role-select";
+import { Role } from "@/generated/prisma";
 
 
 const Page = async () => {
-
+    const headersList = await headers()
 
     const session = await auth.api.getSession({
         headers: await headers()
     })
     if (!session) redirect("/auth/login")
-    const users = await prisma.user.findMany({
-        orderBy: {
-            name: "asc"
+    // const users = await prisma.user.findMany({   //Prisma Query commented, now its time for the authorization permissions.ts file configured
+    //     orderBy: {                               //with auth and authCLient to do the magic of the statements
+    //         name: "asc"
+    //     }
+    // })   
+    const { users } = await auth.api.listUsers({
+        headers: headersList,
+        query: {
+            sortBy: "name",
+            // limit: 10,
+            // offset: 0    //this is for future pagination
         }
     })
 
@@ -55,7 +65,7 @@ const Page = async () => {
                         <div className="space-y-8">
                             <h1 className="text-3xl font-bold text-black">Admin Dashboard</h1>
                             <ReturnButton href="/profile" label="Profile" />
-                            <p className="p-2 rounded-md text-lg bg-green-400 text-white font-bold">WELCOME ADMIN </p>
+                            <p className="p-2 rounded-md text-lg bg-green-400 text-white font-bold">ACCESS GRANTED! </p>
                         </div>
                     </div>
 
@@ -77,13 +87,15 @@ const Page = async () => {
                                             <td className="px-4 py-2">{user.id.slice(0, 8)}</td>
                                             <td className="px-4 py-2">{user.name}</td>
                                             <td className="px-4 py-2">{user.email}</td>
-                                            <td className="px-4 py-2">{user.role}</td>
+                                            <td className="px-4 py-2">
+                                                <UserRoleSelect userId={user.id} role={user.role as Role} />
+                                            </td>
                                             <td className="px-4 py-2 ">
                                                 {
-                                                    user.role !== "ADMIN" ? (
-                                                        <DeleteButton userId={user.id} />
-                                                    ) : (
+                                                    user.role === "ADMIN" && user.name === session.user.name ? (
                                                         <PlaceholderDeleteUserButton />
+                                                    ) : (
+                                                        <DeleteButton userId={user.id} />
                                                     )
                                                 }
                                             </td>
