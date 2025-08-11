@@ -24,8 +24,8 @@ export const SignOutButton = () => {
                     toast.error(ctx.error.message || "Logout  failed!")
                 },
                 onSuccess: () => {
-                    toast.warning("You have logged out! See you soon.")
                     router.push("/auth/login")
+                    toast.warning("You have logged out! See you soon.")
                 }
             }
         })

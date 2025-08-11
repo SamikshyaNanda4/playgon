@@ -2,7 +2,10 @@
 
 import { Role } from "@/generated/prisma"
 import { select } from "framer-motion/client"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { admin, useSession } from "@/lib/auth.client"
+import { toast } from "sonner"
 
 interface UserRoleSelectProps {
     userId: string,
@@ -11,8 +14,46 @@ interface UserRoleSelectProps {
 
 export const UserRoleSelect = ({ userId, role }: UserRoleSelectProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const handleChange = async () => {
+    const router = useRouter()
+    const session = useSession()
+    console.log("session", session)
+    console.log("userID", userId)
 
+    const handleChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const newRole = event.target.value as Role;
+
+        const changeRole = await admin.hasPermission({
+            permissions: {
+                user: ["set-role"]
+            }
+        })
+
+        if (changeRole.error) {
+            return toast.error("Forbidden User !")
+        }
+
+        if (role !== newRole && userId !== session.data?.user?.id) {
+            await admin.setRole({
+                userId,
+                role: newRole,
+                fetchOptions: {
+                    onRequest: () => {
+                        setIsLoading(true)
+                    },
+                    onResponse: () => {
+                        setIsLoading(false);
+                    },
+                    onError: (ctx) => {
+                        toast.error(ctx.error.message)
+                    },
+                    onSuccess: () => {
+                        toast.success(" User Updated Successfully")
+                        router.refresh()
+                    }
+                }
+
+            })
+        }
     }
 
     return (
@@ -21,6 +62,8 @@ export const UserRoleSelect = ({ userId, role }: UserRoleSelectProps) => {
         >
             <option value="ADMIN">Admin</option>
             <option value="USER">User</option>
+            <option value="ARENAMASTER">Arena Master</option>
+
         </select>
     )
 }

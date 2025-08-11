@@ -1,5 +1,6 @@
 import { LoginForm } from "@/my-components/login-form";
 import { ReturnButton } from "@/my-components/return-button";
+import { SignInOAuthButton } from "@/my-components/sign-in-oauth-btn";
 
 const Page = () => {
     return (
@@ -10,7 +11,15 @@ const Page = () => {
                     {/* <RegisterForm /> */}
                     <ReturnButton href="/" label="Home" />
                 </div>
-                <LoginForm />
+                <div className="space=y-4">
+                    <LoginForm />
+                </div>
+                <hr className="max=w-sm" />
+                <div className="flex flex-col max-w-sm gap-4">
+                    <SignInOAuthButton provider="google" />
+                    {/* <SignInOAuthButton provider="github" /> */}
+                </div>
+
             </div>
 
         </>

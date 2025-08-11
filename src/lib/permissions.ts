@@ -15,5 +15,8 @@ export const roles = {
     [Role.ADMIN]: ac.newRole({
         ...adminAc.statements,
         posts: ["create", "read", "update", "delete", "update:own", "delete:own"]
+    }),
+    [Role.ARENAMASTER]: ac.newRole({
+        posts: ["create", "read", "update:own", "delete:own"]
     })
 }

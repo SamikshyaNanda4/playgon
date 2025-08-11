@@ -11,7 +11,7 @@ interface DeleteUserButtonProps {
 }
 
 
-export const DeleteButton = async ({ userId }: DeleteUserButtonProps) => {
+export const DeleteButton = ({ userId }: DeleteUserButtonProps) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
