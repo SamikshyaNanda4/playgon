@@ -3,7 +3,7 @@ import { Trash } from "lucide-react";
 import { ButtonWithLoader } from "@/my-components/button-with-loader";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { deleteUserAction } from "@/actions/delete-user.action";
+import { deleteUserAction } from "@/actions/delete-user-action";
 import { toast } from "sonner";
 
 interface DeleteUserButtonProps {

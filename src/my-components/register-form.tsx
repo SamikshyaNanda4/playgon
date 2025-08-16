@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { ButtonWithLoader } from "./button-with-loader"
 import Link from "next/link"
-import { signUpEmailAction } from "@/actions/sign-up-email.action"
+import { signUpEmailAction } from "@/actions/sign-up-email-action"
 import { Eye, EyeOff } from "lucide-react"
 
 export const RegisterForm = () => {
@@ -26,9 +26,9 @@ export const RegisterForm = () => {
             toast.error(error)
             setIsLoading(false)
         } else {
-            toast.success("User successfully registered!")
+            toast.success("Verify your email and let's get started!")
             setIsLoading(false)
-            router.push("/auth/login")
+            router.push("/auth/register/success")
 
         }
         // 
@@ -97,7 +97,7 @@ export const RegisterForm = () => {
                 </form>
             </div>
             <p className="text-muted-foreground text-sm">Already have an account?{" "}
-                <Link href="/auth/login">
+                <Link href="/auth/login" className="text-sm text-muted-foreground hover:text-foreground">
                     Login
                 </Link>
             </p>

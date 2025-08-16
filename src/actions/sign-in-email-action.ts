@@ -3,6 +3,7 @@ import { auth, ErrorCode } from "@/lib/auth"
 import { parseSetCookieHeader } from "better-auth/cookies"
 import { cookies, headers } from "next/headers"
 import { APIError } from "better-auth/api"
+import { redirect } from "next/navigation"
 
 
 export async function signInEmailAction(formData: FormData) {
@@ -48,6 +49,8 @@ export async function signInEmailAction(formData: FormData) {
         if (err instanceof APIError) {
             const errCode = err.body ? (err.body.code as ErrorCode) : "UNKNOWN"
             switch (errCode) {
+                case "EMAIL_NOT_VERIFIED":
+                    redirect("/auth/verify?error=email_not_verified")
                 default: return {
                     error: err.message
                 }

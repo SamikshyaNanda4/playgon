@@ -1,7 +1,7 @@
 "use client"
 
 import { ButtonWithLoader } from "./button-with-loader"
-import { signOut } from "@/lib/auth.client"
+import { signOut } from "@/lib/auth-client"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { useState } from "react"

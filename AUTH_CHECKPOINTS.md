@@ -82,3 +82,13 @@ Prisma
     -Guard `/admin/dashboard`
     -List Users with prisma Query
 -DataBase Hooks
+
+-Google Auth
+Error handling page for Oauth
+/auth/login/error
+Email Verification --->5:12:26
+custom session is not done
+mobile logout is not happening
+
+//use email service like resend or sendgrid or mailchimp-->meney buy
+//

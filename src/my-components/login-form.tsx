@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { signInEmailAction } from "@/actions/sign-in-email.action"
+import { signInEmailAction } from "@/actions/sign-in-email-action"
 import { ButtonWithLoader } from "./button-with-loader"
 import { useState } from "react"
 import Link from "next/link"
@@ -68,8 +68,15 @@ export const LoginForm = () => {
                     </div>
 
                     <div className="space-y-2">
+
                         <Label htmlFor="password">Password</Label>
                         <Input type="password" id="password" name="password" />
+                        <div className="flex justify-between items-center gap-2">
+                            <Label htmlFor="password"></Label>
+                            <Link href="/auth/forgot-password" className="text-sm italic text-muted-foreground hover:text-foreground">
+                                Forgot password?
+                            </Link>
+                        </div>
                     </div>
                     <ButtonWithLoader type="submit" className="w-full cursor-pointer" isLoading={isLoading} >
                         Login
@@ -78,7 +85,7 @@ export const LoginForm = () => {
                 </form>
             </div>
             <p className="text-muted-foreground text-sm">Don&apos;t have an account?{" "}
-                <Link href="/auth/register">
+                <Link href="/auth/register" className="text-sm text-muted-foreground hover:text-foreground">
                     Register
                 </Link>
             </p>

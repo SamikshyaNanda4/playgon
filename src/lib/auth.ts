@@ -11,6 +11,7 @@ import { getValidDomains, normalizeName } from "@/lib/utils";
 import { Role } from "@/generated/prisma";
 import { admin } from "better-auth/plugins"
 import { ac, roles } from "@/lib/permissions"
+import { sendEmailAction } from "@/actions/send-email-action";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -25,10 +26,42 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
         minPasswordLength: 8,
+        maxPasswordLength: 160,
+        resetPasswordTokenExpiresIn: 30 * 30,
         autoSignIn: false,
         password: {
             hash: hashPassword,
             verify: verifyPassword
+        },
+        requireEmailVerification: true,
+        sendResetPassword: async ({ user, url }) => {
+            await sendEmailAction({
+                to: user.email,
+                subject: "Reset Password on your playgon account",
+                meta: {
+                    description: "Please click the link below to reset your password.",
+                    link: String(url)
+                }
+            })
+        }
+    },
+    emailVerification: {
+        expiresIn: 30 * 60, //expires in 30 minutes
+        sendOnSignUp: true,
+        autoSignInAfterVerification: true,
+        sendVerificationEmail: async ({ user, url }) => {
+
+            const link = new URL(url);
+            link.searchParams.set("callbackURL", "/auth/verify")
+            console.log("url before changing", url)
+            await sendEmailAction({
+                to: user.email,
+                subject: "Verify your Email with playgon",
+                meta: {
+                    description: "Please verify your email address to complete the registation process.",
+                    link: String(link)
+                }
+            })
         }
     },
     hooks: {
@@ -80,7 +113,7 @@ export const auth = betterAuth({
         }
     },
     session: {
-        expiresIn: 30 * 24 * 60 * 60
+        expiresIn: 30 * 24 * 60 * 60 * 12 //approx 12 months
     },
     advanced: {
         database: {
