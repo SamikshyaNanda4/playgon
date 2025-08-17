@@ -34,7 +34,7 @@ const ChangePasswordForm = () => {
 
     return (
         <>
-            <div>update-user-form</div>
+            <div>update-password-form</div>
 
             <form action="" className='max-w-sm w-full space-y-4' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-2'>

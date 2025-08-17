@@ -16,7 +16,10 @@ import {
     IconReport,
     IconSearch,
     IconSettings,
+    IconUser,
     IconUsers,
+    IconCalendarBolt,
+    IconPlayCard10
 } from "@tabler/icons-react"
 
 
@@ -52,7 +55,7 @@ const data = {
         {
             title: "Play",
             url: "/play",
-            icon: IconListDetails,
+            icon: IconPlayCard10,
             selected: false
         },
         {
@@ -64,7 +67,7 @@ const data = {
         {
             title: "Calendar",
             url: "/calendar",
-            icon: IconFolder,
+            icon: IconCalendarBolt,
             selected: false
         },
         {
@@ -73,6 +76,12 @@ const data = {
             icon: IconUsers,
             selected: false
         },
+        {
+            title: "Profile",
+            url: "/profile",
+            icon: IconUser,
+            selected: false
+        }
     ],
     navClouds: [
         {

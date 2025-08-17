@@ -1,7 +1,7 @@
 // import { RegisterForm } from "@/app/my-components/register-form";
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers";
-import { SignOutButton } from "../../my-components/sign-out-button";
+import { SignOutButton } from "../../../my-components/sign-out-button";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

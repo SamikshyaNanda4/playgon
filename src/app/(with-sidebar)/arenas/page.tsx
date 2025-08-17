@@ -57,7 +57,14 @@ const Page = () => {
                       {/* Animated top-right tag */}
                       <AnimatedTag item={item} index={i} />
 
-                      <Card className="shadow-2xl shadow-sky-950 cursor-pointer">
+                      <Card
+                        className="shadow-2xl shadow-black/50 cursor-pointer border border-white/10 backdrop-blur-md hover:border-white/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-black/60"
+                        style={{
+                          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                          backdropFilter: 'blur(16px)',
+                          background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02))'
+                        }}
+                      >
                         <CardHeader className="pb-1">{item.icon}</CardHeader>
                         <CardContent className="text-left">
                           <h2 className="mb-1 text-lg font-semibold">Card Title</h2>
