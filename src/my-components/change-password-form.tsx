@@ -8,7 +8,7 @@ import { ButtonWithLoader } from './button-with-loader'
 import { toast } from 'sonner'
 import { updateUser } from '@/lib/auth-client'
 import { Eye, EyeOff } from 'lucide-react'
-import { changePasswordAction } from '@/actions/ change-password-action'
+import { changePasswordAction } from '@/actions/change-password-action'
 
 
 const ChangePasswordForm = () => {
