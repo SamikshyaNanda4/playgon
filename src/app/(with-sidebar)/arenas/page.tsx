@@ -23,7 +23,7 @@ const Page = () => {
 
   return (
     <div>
-      <div className="xl:ml-[220px] ms-[20px] p-4 h-screen overflow-y-auto bg-[#f1f1f1]">
+      <div className=" p-4 h-screen overflow-y-auto ">
         <motion.section
           className="py-10"
           initial={{ opacity: 0, y: 0 }}
