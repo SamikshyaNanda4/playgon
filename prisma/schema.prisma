@@ -38,14 +38,14 @@ enum SportType {
 // ========== USER ==========
 
 model UserLocal {
-  userId    String @id @default(cuid())
-  role      Role   @default(USER)
-  username  String @unique
-  password  String
-  firstName String
-  lastName  String
+  userId       String  @id @default(cuid())
+  role         Role    @default(USER)
+  username     String
+  IGN          String?
+  uniqueName   String?
+  uniqueNumber Int?
 
-  authId String
+  authId String @unique
   user   User   @relation(fields: [authId], references: [id], onDelete: Cascade)
 
   createdAt   DateTime @default(now())
@@ -55,7 +55,7 @@ model UserLocal {
 
   participantIn BookParticipant[]
   bookingsMade  BookingCard[]     @relation("UserBookings")
-  bio           String
+  bio           String?
 
   @@map("user_local")
 }

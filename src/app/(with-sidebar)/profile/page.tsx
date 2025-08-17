@@ -1,7 +1,7 @@
 // import { RegisterForm } from "@/app/my-components/register-form";
 import { auth } from "@/lib/auth"
 import { headers } from "next/headers";
-import { SignOutButton } from "../../my-components/sign-out-button";
+import { SignOutButton } from "../../../my-components/sign-out-button";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -33,8 +33,8 @@ const Page = async () => {
 
     return (
         <>
-            <div className="px-8 py-16 container mx-auto max-w-screen-lg space-y-8 ">
-                <h1 className="text-3xl font-bold text-black">Profile Page</h1>
+            <div className="px-2 py-1 container mx-auto max-w-screen-lg space-y-4 ">
+                <h1 className="text-3xl font-bold">Profile Page</h1>
 
                 <div className="flex items-center gap-2">
                     {
@@ -52,10 +52,12 @@ const Page = async () => {
                     </div>
                 </div>
                 {session?.user?.image ? (
-                    <img
+                    <Image
                         src={session.user.image}
                         alt="user image"
-                        className="size-14 rounded-md object-cover"
+                        width={56}   // 👈 size-14 in Tailwind = 56px
+                        height={56}
+                        className="rounded-md object-cover"
                     />
                 ) : (
                     <div className="size-14 border border-primary rounded-md bg-primary text-primary-foreground flex items-center justify-center">
@@ -68,9 +70,13 @@ const Page = async () => {
                     </div>
                 )}
 
-                <pre className="text-sm overflow-clip">
-                    {JSON.stringify(session, null, 2)}
-                </pre>
+                <div className="space-y-8 p-4 rounded-b-md border border-t-8 border-cyan-700">
+                    <h2 className="text-xl font-bold">
+                        Change Password
+                    </h2>
+                    <ChangePasswordForm />
+                </div>
+
 
                 <div className="space-y-8 p-4 rounded-b-md border border-t-8 border-lime-600">
                     <h2 className="text-xl font-bold">
@@ -80,12 +86,12 @@ const Page = async () => {
                         name={session.user.name} />
                 </div>
 
-                <div className="space-y-8 p-4 rounded-b-md border border-t-8 border-cyan-700">
-                    <h2 className="text-xl font-bold">
-                        Change Password
-                    </h2>
-                    <ChangePasswordForm />
-                </div>
+                <pre className="text-sm overflow-clip">
+                    {JSON.stringify(session, null, 2)}
+                </pre>
+
+
+
 
             </div>
         </>

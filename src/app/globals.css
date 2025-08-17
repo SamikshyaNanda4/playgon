@@ -44,79 +44,292 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.75rem;
+  /* Deep dark background - stadium night vibes */
+  --background: oklch(0.04 0 0);
+  --foreground: oklch(0.98 0 0);
+  /* Electric lime cards with transparency */
+  --card: oklch(0.08 0.15 120 / 0.20);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.08 0.15 120 / 0.25);
+  --popover-foreground: oklch(0.98 0 0);
+  /* Vibrant electric lime primary */
+  --primary: oklch(0.75 0.28 120);
+  --primary-foreground: oklch(0.04 0 0);
+  /* Dark secondary with lime tint */
+  --secondary: oklch(0.10 0.05 120);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.10 0.03 120);
+  --muted-foreground: oklch(0.65 0 0);
+  /* Yellow accent for energy */
+  --accent: oklch(0.12 0.08 120);
+  --accent-foreground: oklch(0.75 0.20 80);
+  --destructive: oklch(0.65 0.25 15);
+  --border: oklch(0.18 0.05 120);
+  --input: oklch(0.12 0.08 120);
+  /* Electric lime ring */
+  --ring: oklch(0.75 0.28 120);
+  /* Sports-themed chart colors - lime focused */
+  --chart-1: oklch(0.75 0.28 120); /* Electric lime */
+  --chart-2: oklch(0.75 0.20 80);  /* Yellow */
+  --chart-3: oklch(0.65 0.25 15);  /* Red */
+  --chart-4: oklch(0.70 0.20 140); /* Green */
+  --chart-5: oklch(0.75 0.18 100); /* Lime-yellow */
+  --sidebar: oklch(0.04 0 0);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.75 0.28 120);
+  --sidebar-primary-foreground: oklch(0.04 0 0);
+  --sidebar-accent: oklch(0.12 0.08 120);
+  --sidebar-accent-foreground: oklch(0.75 0.20 80);
+  --sidebar-border: oklch(0.18 0.05 120);
+  --sidebar-ring: oklch(0.75 0.28 120);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Even darker for premium sports app feel */
+  --background: oklch(0.02 0 0);
+  --foreground: oklch(0.98 0 0);
+  /* Enhanced dark cards with lime glow */
+  --card: oklch(0.06 0.12 120 / 0.25);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.06 0.12 120 / 0.30);
+  --popover-foreground: oklch(0.98 0 0);
+  /* Brighter electric lime for dark mode */
+  --primary: oklch(0.80 0.32 120);
+  --primary-foreground: oklch(0.02 0 0);
+  --secondary: oklch(0.06 0.08 120);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.06 0.05 120);
+  --muted-foreground: oklch(0.70 0 0);
+  --accent: oklch(0.08 0.10 120);
+  --accent-foreground: oklch(0.80 0.24 80);
+  --destructive: oklch(0.70 0.28 15);
+  --border: oklch(0.15 0.08 120);
+  --input: oklch(0.08 0.10 120);
+  --ring: oklch(0.80 0.32 120);
+  /* Enhanced chart colors for dark mode - lime theme */
+  --chart-1: oklch(0.80 0.32 120); /* Brighter electric lime */
+  --chart-2: oklch(0.80 0.24 80);  /* Vibrant yellow */
+  --chart-3: oklch(0.70 0.28 15);  /* Bright red */
+  --chart-4: oklch(0.75 0.22 140); /* Bright green */
+  --chart-5: oklch(0.85 0.20 100); /* Bright lime-yellow */
+  --sidebar: oklch(0.02 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.80 0.32 120);
+  --sidebar-primary-foreground: oklch(0.02 0 0);
+  --sidebar-accent: oklch(0.08 0.10 120);
+  --sidebar-accent-foreground: oklch(0.80 0.24 80);
+  --sidebar-border: oklch(0.15 0.08 120);
+  --sidebar-ring: oklch(0.80 0.32 120);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    /* Futuristic lime grid background */
+    background-image: 
+      /* Main grid lines */
+      linear-gradient(rgba(132, 204, 22, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.12) 1px, transparent 1px),
+      /* Secondary grid for depth */
+      linear-gradient(rgba(132, 204, 22, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.05) 1px, transparent 1px),
+      /* Subtle glow overlay */
+      radial-gradient(circle at 25% 25%, rgba(132, 204, 22, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 0, 0.02) 0%, transparent 50%);
+    background-size: 
+      60px 60px,
+      60px 60px,
+      12px 12px,
+      12px 12px,
+      800px 800px,
+      600px 600px;
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      100% 100%;
+    /* Animated grid movement */
+    animation: gridMove 20s linear infinite;
+  }
+  
+  @keyframes gridMove {
+    0% {
+      background-position:
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        100% 100%;
+    }
+    100% {
+      background-position:
+        60px 60px,
+        60px 60px,
+        12px 12px,
+        12px 12px,
+        -100px -100px,
+        200% 200%;
+    }
+  }
+
+  /* Sports-themed input styling with wide lime borders */
+  input, textarea, select {
+    @apply border-4 border-lime-400/80 rounded-xl bg-background px-6 py-4 text-foreground font-medium;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(132, 204, 22, 0.15);
+    min-height: 48px;
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    @apply border-lime-300 outline-none ring-4 ring-lime-400/50;
+    box-shadow: 0 6px 16px rgba(132, 204, 22, 0.25);
+    transform: translateY(-2px);
+  }
+  
+  input:hover, textarea:hover, select:hover {
+    @apply border-lime-300/90;
+    box-shadow: 0 4px 12px rgba(132, 204, 22, 0.18);
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced button styling for sports app */
+  button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  button:hover {
+    transform: translateY(-1px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+
+  /* Sports-themed scrollbar - lime theme */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: oklch(0.06 0.05 120);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.75 0.28 120);
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.80 0.32 120);
+  }
+
+  /* Sports app specific utilities - lime theme */
+  .sports-glow {
+    box-shadow: 0 0 25px rgba(132, 204, 22, 0.4);
+  }
+  
+  .sports-card {
+    background: linear-gradient(145deg, 
+      rgba(132, 204, 22, 0.10), 
+      rgba(132, 204, 22, 0.03)
+    );
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(132, 204, 22, 0.3);
+    position: relative;
+  }
+  
+  /* Enhanced card with lime grid overlay */
+  .sports-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(132, 204, 22, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  
+  .sports-gradient {
+    background: linear-gradient(135deg, 
+      oklch(0.80 0.32 120) 0%, 
+      oklch(0.80 0.24 80) 100%
+    );
+  }
+  
+  /* Futuristic lime grid pattern utility */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(132, 204, 22, 0.20) 3px, transparent 3px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.20) 3px, transparent 3px),
+      linear-gradient(rgba(132, 204, 22, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.08) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+  
+  /* Animated lime grid for interactive elements */
+  .animated-grid {
+    background-image: 
+      linear-gradient(rgba(132, 204, 22, 0.15) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(132, 204, 22, 0.15) 2px, transparent 2px);
+    background-size: 30px 30px;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes gridPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  
+  /* Typography enhancements for sports content */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  
+  .sports-title {
+    background: linear-gradient(135deg, 
+      oklch(0.80 0.32 120), 
+      oklch(0.80 0.24 80)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Lime-themed highlights */
+  .lime-highlight {
+    background: rgba(132, 204, 22, 0.15);
+    border-left: 4px solid oklch(0.80 0.32 120);
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .lime-pulse {
+    animation: limePulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes limePulse {
+    0%, 100% { 
+      box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.4);
+    }
+    50% { 
+      box-shadow: 0 0 0 20px rgba(132, 204, 22, 0);
+    }
   }
 }

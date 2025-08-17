@@ -8,7 +8,7 @@ import { ButtonWithLoader } from './button-with-loader'
 import { toast } from 'sonner'
 import { updateUser } from '@/lib/auth-client'
 import { Eye, EyeOff } from 'lucide-react'
-import { changePasswordAction } from '@/actions/ change-password-action'
+import { changePasswordAction } from '@/actions/change-password-action'
 
 
 const ChangePasswordForm = () => {
@@ -34,7 +34,7 @@ const ChangePasswordForm = () => {
 
     return (
         <>
-            <div>update-user-form</div>
+            <div>update-password-form</div>
 
             <form action="" className='max-w-sm w-full space-y-4' onSubmit={handleSubmit}>
                 <div className='flex flex-col gap-2'>

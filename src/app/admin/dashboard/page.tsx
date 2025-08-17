@@ -61,7 +61,7 @@ const Page = async () => {
         return (
             <>
                 <>
-                    <div className="px-8 py-16 container mx-auto max-w-screen-lg space-y-8 ">
+                    <div className=" px-8 py-16 container mx-auto max-w-screen-lg space-y-8 ">
                         <div className="space-y-8">
                             <h1 className="text-3xl font-bold text-black">Admin Dashboard</h1>
                             <ReturnButton href="/profile" label="Profile" />
@@ -69,7 +69,7 @@ const Page = async () => {
                         </div>
                     </div>
 
-                    <div className="w-full overflow-x-auto">
+                    <div className="w-10/12 overflow-x-auto px-10 md:ml-20">
                         <table className="table-auto min-w-full whitespace-nowrap">
                             <thead>
                                 <tr className="border-b text-sm text-left">

@@ -12,6 +12,8 @@ import { Role } from "@/generated/prisma";
 import { admin } from "better-auth/plugins"
 import { ac, roles } from "@/lib/permissions"
 import { sendEmailAction } from "@/actions/send-email-action";
+import { addLocalUser } from "@/actions/add-local-user-action";
+import { redirect } from "next/navigation";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {
@@ -99,7 +101,9 @@ export const auth = betterAuth({
                 },
                 after: async (user) => {
                     //user_local db registration addition window
+                    addLocalUser(user.id)
                     console.log(user, "USER CREATED SUCCESSFULLY")
+
                 }
             }
         }
