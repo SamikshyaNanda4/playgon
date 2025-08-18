@@ -1,6 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth"
-import { superRefine } from "better-auth";
 
 
 export async function addLocalUser(id: string) {
@@ -14,7 +12,7 @@ export async function addLocalUser(id: string) {
         return { error: "User not found!" }
     }
 
-    const result = await prisma.userLocal.create({
+    await prisma.userLocal.create({
         data: {
             username: user?.name,
             authId: user?.id,

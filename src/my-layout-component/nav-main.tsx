@@ -1,8 +1,8 @@
 "use client"
 
-import { Home, HomeIcon, MessageCircleDashed, type Icon } from "lucide-react"
-
-import { ButtonWithLoader } from "@/my-components/button-with-loader"
+import { HomeIcon, MessageCircleDashed, type LucideIcon } from "lucide-react"
+import { type Icon } from "@tabler/icons-react"
+// import { ButtonWithLoader } from "@/my-components/button-with-loader"
 
 import {
     SidebarGroup,
@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-import { title } from "process"
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
@@ -24,7 +23,7 @@ export function NavMain(
         items: {
             title: string,
             url: string,
-            icon?: any,
+            icon?: LucideIcon | Icon,
             selected?: boolean,
         }[],
         handleSelectMenu: (title: string) => void;
@@ -33,11 +32,12 @@ export function NavMain(
     const pathname = usePathname()
 
     useEffect(() => {
+        const selected = items.some(item => item.selected === true)
         const match = items.find((item) => pathname.startsWith(item.url))
-        if (match) {
+        if (match && !selected) {
             handleSelectMenu(match.title)
         }
-    }, [])
+    }, [pathname, items, handleSelectMenu])
     const router = useRouter()
 
     return (

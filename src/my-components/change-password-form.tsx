@@ -1,12 +1,11 @@
 "use client"
 
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { ButtonWithLoader } from './button-with-loader'
 // import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { updateUser } from '@/lib/auth-client'
 import { Eye, EyeOff } from 'lucide-react'
 import { changePasswordAction } from '@/actions/change-password-action'
 

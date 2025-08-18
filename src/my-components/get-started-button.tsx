@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { useSession } from "@/lib/auth-client"
-import { p } from "framer-motion/client";
 import Link from "next/link";
 
 export const GetStartedButton = () => {

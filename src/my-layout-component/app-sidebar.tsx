@@ -9,10 +9,10 @@ import {
     IconFileAi,
     IconFileDescription,
     IconFileWord,
-    IconFolder,
+
     IconHelp,
     IconInnerShadowTop,
-    IconListDetails,
+
     IconReport,
     IconSearch,
     IconSettings,
@@ -35,7 +35,6 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { deepClone } from "@/lib/utils"
 import Link from "next/link"
 
 

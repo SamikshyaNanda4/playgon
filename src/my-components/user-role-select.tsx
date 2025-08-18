@@ -1,7 +1,6 @@
 "use client"
 
 import { Role } from "@/generated/prisma"
-import { select } from "framer-motion/client"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { admin, useSession } from "@/lib/auth-client"

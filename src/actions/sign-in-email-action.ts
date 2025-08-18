@@ -1,7 +1,6 @@
 "use server"
 import { auth, ErrorCode } from "@/lib/auth"
-import { parseSetCookieHeader } from "better-auth/cookies"
-import { cookies, headers } from "next/headers"
+import { headers } from "next/headers"
 import { APIError } from "better-auth/api"
 import { redirect } from "next/navigation"
 

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation"
 import { ChevronsRight } from 'lucide-react';
 
 
-export async function SiteHeader() {
+export function SiteHeader() {
     const pathname = usePathname()
     const firstSegment = pathname.split("/")[1] || "home"
     const title = firstSegment.charAt(0).toUpperCase() + firstSegment.slice(1)

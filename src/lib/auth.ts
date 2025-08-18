@@ -13,7 +13,6 @@ import { admin } from "better-auth/plugins"
 import { ac, roles } from "@/lib/permissions"
 import { sendEmailAction } from "@/actions/send-email-action";
 import { addLocalUser } from "@/actions/add-local-user-action";
-import { redirect } from "next/navigation";
 
 export const auth = betterAuth({
     database: prismaAdapter(prisma, {

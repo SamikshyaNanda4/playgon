@@ -1,7 +1,5 @@
-import { LoginForm } from "@/my-components/login-form";
+
 import { ReturnButton } from "@/my-components/return-button";
-import { SignInOAuthButton } from "@/my-components/sign-in-oauth-btn";
-import { error } from "console";
 
 interface PageProp {
     searchParams: Promise<{ error: string }>

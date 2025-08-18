@@ -15,9 +15,8 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { div } from "framer-motion/client";
+
 import { AnimatedTag } from '@/my-components/animated-tags';
-import { TagItem } from '@/types/sports';
 
 const Page = () => {
 
