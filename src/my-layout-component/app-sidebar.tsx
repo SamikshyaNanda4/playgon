@@ -169,19 +169,18 @@ const data = {
 
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-    const [ourdata, setourData] = React.useState(data)
 
-    function handleSelectMenu(title: string) {
-        setourData((prev) => ({
-            ...prev,
-            navMain: prev.navMain.map((item) =>
-                item.title === title
-                    ? { ...item, selected: true }
-                    : { ...item, selected: false }
-            ),
-        }))
-        console.log(ourdata, "data")
-    }
+    // function handleSelectMenu(title: string) {
+    //     setourData((prev) => ({
+    //         ...prev,
+    //         navMain: prev.navMain.map((item) =>
+    //             item.title === title
+    //                 ? { ...item, selected: true }
+    //                 : { ...item, selected: false }
+    //         ),
+    //     }))
+    //     console.log(ourdata, "data")
+    // }
 
     return (
         <Sidebar collapsible="offcanvas" {...props}>
@@ -201,7 +200,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <NavMain items={ourdata.navMain} handleSelectMenu={handleSelectMenu} />
+                <NavMain items={data.navMain}
+                // handleSelectMenu={handleSelectMenu} 
+                />
                 {/* <NavDocuments items={data.documents} />
                 <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
             </SidebarContent>

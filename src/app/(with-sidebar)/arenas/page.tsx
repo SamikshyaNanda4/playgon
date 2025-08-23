@@ -41,16 +41,12 @@ const Page = () => {
               {[
                 { sportsType: "cricket", icon: <Code className="size-4" />, img: "https://www.gwsportsapp.in/media/ground-images/gallery/MC4yNjg0MzkwMCAxNTk3OTA4MDY4.jpeg" },
                 { sportsType: "football", icon: <Play className="size-4" />, img: "https://enrollacademy.com/wp-content/uploads/2022/09/indoor-soccer.jpg" },
-                { sportsType: "tennis", icon: <GitBranch className="size-4" />, img: "https://knowledgegk.com/wp-content/uploads/2024/02/Box-Cricket.jpg" },
                 { sportsType: "basketball", icon: <List className="size-4" />, img: "https://i.pinimg.com/originals/f0/68/17/f06817a3672704b4e429821ea0b0e929.jpg" },
                 { sportsType: "cricket", icon: <WandSparkles className="size-4" />, img: "https://tse2.mm.bing.net/th/id/OIP.fSnfQSkhFdCE3vLdMy1gVAHaEK?pid=Api&P=0&h=220" },
-                { sportsType: "football", icon: <Sparkles className="size-4" />, img: "https://i.pinimg.com/736x/eb/e2/6a/ebe26a3a75c71ffd7867c8a911376c5f.jpg" },
                 { sportsType: "cricket", icon: <Code className="size-4" />, img: "https://www.gwsportsapp.in/media/ground-images/gallery/MC4yNjg0MzkwMCAxNTk3OTA4MDY4.jpeg" },
-                { sportsType: "football", icon: <Play className="size-4" />, img: "https://enrollacademy.com/wp-content/uploads/2022/09/indoor-soccer.jpg" },
                 { sportsType: "tennis", icon: <GitBranch className="size-4" />, img: "https://knowledgegk.com/wp-content/uploads/2024/02/Box-Cricket.jpg" },
                 { sportsType: "basketball", icon: <List className="size-4" />, img: "https://i.pinimg.com/originals/f0/68/17/f06817a3672704b4e429821ea0b0e929.jpg" },
                 { sportsType: "cricket", icon: <WandSparkles className="size-4" />, img: "https://tse2.mm.bing.net/th/id/OIP.fSnfQSkhFdCE3vLdMy1gVAHaEK?pid=Api&P=0&h=220" },
-                { sportsType: "football", icon: <Sparkles className="size-4" />, img: "https://i.pinimg.com/736x/eb/e2/6a/ebe26a3a75c71ffd7867c8a911376c5f.jpg" },
               ].map((item, i) => (
                 <motion.div
                   key={i}

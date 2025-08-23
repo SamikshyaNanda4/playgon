@@ -19,41 +19,47 @@ import Link from "next/link"
 
 
 export function NavMain(
-    { items, handleSelectMenu }: {
+    { items}: {
         items: {
             title: string,
             url: string,
             icon?: LucideIcon | Icon,
             selected?: boolean,
         }[],
-        handleSelectMenu: (title: string) => void;
     }
 ) {
     const pathname = usePathname()
+        // Determine active item based on current pathname
+    const getIsActive = (url: string) => {
+        return pathname === url || pathname.startsWith(url + "/")
+    }
 
-    useEffect(() => {
-        const selected = items.some(item => item.selected === true)
-        const match = items.find((item) => pathname.startsWith(item.url))
-        if (match && !selected) {
-            handleSelectMenu(match.title)
-        }
-    }, [pathname, items, handleSelectMenu])
-    const router = useRouter()
+    const isHomeActive = pathname === "/" || pathname.startsWith("/home")
+
+    // useEffect(() => {
+    //     const selected = items.some(item => item.selected === true)
+    //     const match = items.find((item) => pathname.startsWith(item.url))
+    //     if (match && !selected) {
+    //         handleSelectMenu(match.title)
+    //     }
+    // }, [pathname, items, handleSelectMenu])
+    // const router = useRouter()
 
     return (
         <SidebarGroup>
             <SidebarGroupContent className="flex flex-col gap-2">
                 <SidebarMenu>
                     <SidebarMenuItem className="flex items-center gap-2">
-                        <SidebarMenuButton tooltip="Home" onClick={() => {
-                            handleSelectMenu("Home")
-                            router.push("/home")
-                        }}
-                            className={items.some((item) => item.selected === true) ? "none" : style}
+                        <SidebarMenuButton 
+                            asChild
+                            tooltip="Home" 
+                            className={isHomeActive ? style : "none"}
                         >
-                            <HomeIcon />
-                            <span>Home</span>
-                        </SidebarMenuButton >
+                            <Link href="/home">
+                                <HomeIcon />
+                                <span>Home</span>
+                            </Link>
+                        </SidebarMenuButton>
                         <Button size="icon" className="size-8 group-data-[collapsible=icon]:opacity-0" variant="outline">
                             <MessageCircleDashed />
                             <span className="sr-only">Inbox</span>
@@ -61,19 +67,21 @@ export function NavMain(
                     </SidebarMenuItem>
                 </SidebarMenu>
                 <SidebarMenu>
-                    {items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
+                    {items.map((item) => {
+                        const isActive=getIsActive(item.url)
+                        return (
+                            <SidebarMenuItem key={item.title}>
                             <Link href={item.url}>
-                                <SidebarMenuButton tooltip={item.title} className={item.selected ? style : "none"} onClick={() => {
-                                    console.log(handleSelectMenu(item.title), "RESULT")
-                                    // router.push(item.url)
-                                }} >
-                                    {item.icon && <item.icon />}
-                                    <span>{item.title}</span>
+                                <SidebarMenuButton asChild tooltip={item.title} className={isActive ? style : "none"} >
+                                    <Link href={item.url}>
+                                        {item.icon && <item.icon />}
+                                        <span>{item.title}</span>
+                                    </Link>
                                 </SidebarMenuButton>
                             </Link>
                         </SidebarMenuItem>
-                    ))}
+                        )
+                    })}
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>
@@ -82,3 +90,4 @@ export function NavMain(
 }
 
 const style = "bg-lime-600 text-primary-foreground hover:bg-lime-500/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+const styleHome = "flex items-center gap-2 bg-lime-600 text-primary-foreground hover:bg-lime-500/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"

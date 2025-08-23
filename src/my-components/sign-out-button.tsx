@@ -25,7 +25,7 @@ export const SignOutButton = () => {
                 },
                 onSuccess: () => {
                     router.push("/auth/login")
-                    toast.warning("You have logged out! See you soon.")
+                    toast.success("You have logged out Successfully! See you soon.")
                 }
             }
         })
