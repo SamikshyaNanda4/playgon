@@ -12,8 +12,6 @@ import {
     SidebarMenuItem
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
-import { useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 
@@ -73,7 +71,7 @@ export function NavMain(
                             <SidebarMenuItem key={item.title}>
                             <Link href={item.url}>
                                 <SidebarMenuButton asChild tooltip={item.title} className={isActive ? style : "none"} >
-                                    <Link href={item.url}>
+                                    <Link href={item?.url}>
                                         {item.icon && <item.icon />}
                                         <span>{item.title}</span>
                                     </Link>

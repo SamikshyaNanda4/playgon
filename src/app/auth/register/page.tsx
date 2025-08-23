@@ -27,7 +27,7 @@ const Page = () => {
             {/* Right side - Image (hidden on mobile, 4/10 on desktop) */}
             <div className="hidden lg:block lg:w-2/5 relative">
                 <Image
-                    src="/sports-image.jpg" 
+                    src="/sports-images.jpg" 
                     alt="Register background"
                     fill
                     className="object-cover"
