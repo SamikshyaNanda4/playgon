@@ -33,22 +33,29 @@ const Page = async () => {
 
     return (
         <>
-            <div className="px-2 py-1 container mx-auto max-w-screen-lg space-y-4 ">
-                <h1 className="text-3xl font-bold">Profile Page</h1>
+            <div className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 container mx-auto max-w-screen-lg space-y-4 sm:space-y-6">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">Profile Page</h1>
 
-                <div className="flex items-center gap-2">
-                    {
-                        session.user.role === "ADMIN" && (
-                            <Button size='sm' asChild>
-                                <Link href="/admin/dashboard">Admin Dashboard</Link>
-                            </Button>
-                        )
-                    }
+                <div className="flex flex-col gap-3 sm:gap-4">
+                    {/* Action Buttons Section */}
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                        {
+                            session.user.role === "ADMIN" && (
+                                <Button size='sm' className="w-full sm:w-auto" asChild>
+                                    <Link href="/admin/dashboard">Admin Dashboard</Link>
+                                </Button>
+                            )
+                        }
+                       
+                    </div>
                     <SignOutButton />
-                    <div className="text-2x font-bold">Permissions--</div>
-                    <div className="space-x-4">
-                        <Button size='sm'>MANAGE OWN POSTS</Button>
-                        <Button size='sm' disabled={!FULL_POST_ACCESS.success}>MANAGE ALL POSTS</Button>
+                    {/* Permissions Section */}
+                    <div className="flex flex-col gap-3">
+                        <h3 className="text-lg sm:text-xl font-bold">Permissions</h3>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                            <Button size='sm' className="w-full sm:w-auto">MANAGE OWN POSTS</Button>
+                            <Button size='sm' className="w-full sm:w-auto" disabled={!FULL_POST_ACCESS.success}>MANAGE ALL POSTS</Button>
+                        </div>
                     </div>
                 </div>
                 {session?.user?.image ? (

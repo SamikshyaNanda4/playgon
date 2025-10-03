@@ -9,7 +9,8 @@ import {
     SidebarGroupContent,
     SidebarMenu,
     SidebarMenuButton,
-    SidebarMenuItem
+    SidebarMenuItem,
+    useSidebar
 } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
@@ -27,12 +28,21 @@ export function NavMain(
     }
 ) {
     const pathname = usePathname()
-        // Determine active item based on current pathname
+    const { isMobile, setOpenMobile } = useSidebar()
+
+    // Determine active item based on current pathname
     const getIsActive = (url: string) => {
         return pathname === url || pathname.startsWith(url + "/")
     }
 
     const isHomeActive = pathname === "/" || pathname.startsWith("/home")
+
+    // Close sidebar on mobile when a navigation item is clicked
+    const handleNavClick = () => {
+        if (isMobile) {
+            setOpenMobile(false)
+        }
+    }
 
     // useEffect(() => {
     //     const selected = items.some(item => item.selected === true)
@@ -48,12 +58,12 @@ export function NavMain(
             <SidebarGroupContent className="flex flex-col gap-2">
                 <SidebarMenu>
                     <SidebarMenuItem className="flex items-center gap-2">
-                        <SidebarMenuButton 
+                        <SidebarMenuButton
                             asChild
-                            tooltip="Home" 
+                            tooltip="Home"
                             className={isHomeActive ? style : "none"}
                         >
-                            <Link href="/home">
+                            <Link href="/home" onClick={handleNavClick}>
                                 <HomeIcon />
                                 <span>Home</span>
                             </Link>
@@ -69,15 +79,13 @@ export function NavMain(
                         const isActive=getIsActive(item.url)
                         return (
                             <SidebarMenuItem key={item.title}>
-                            <Link href={item.url}>
                                 <SidebarMenuButton asChild tooltip={item.title} className={isActive ? style : "none"} >
-                                    <Link href={item?.url}>
+                                    <Link href={item?.url} onClick={handleNavClick}>
                                         {item.icon && <item.icon />}
                                         <span>{item.title}</span>
                                     </Link>
                                 </SidebarMenuButton>
-                            </Link>
-                        </SidebarMenuItem>
+                            </SidebarMenuItem>
                         )
                     })}
                 </SidebarMenu>

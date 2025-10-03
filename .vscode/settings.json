@@ -1,5 +1,11 @@
 {
     "terminal.integrated.fontLigatures": false,
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
-    "notebook.markup.fontSize": 400
+    "notebook.markup.fontSize": 400,
+    "editor.codeLensFontFamily": "JetBrainsMono Nerd Font Mono",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "debug.console.fontSize": 16,
+    "scm.inputFontSize": 1,
+    "terminal.integrated.fontSize": 16
 }

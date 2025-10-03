@@ -65,42 +65,73 @@ const Page = async () => {
                         </div>
                     </div>
 
-                    <div className="w-10/12 overflow-x-auto px-10 md:ml-20">
-                        <table className="table-auto min-w-full whitespace-nowrap">
-                            <thead>
-                                <tr className="border-b text-sm text-left">
-                                    <th className="px-2 py-2">ID</th>
-                                    <th className="px-2 py-2">Name</th>
-                                    <th className="px-2 py-2">Email</th>
-                                    <th className="px-2 py-2">Role</th>
-                                    <th className="px-2 py-2">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    users.map(user => (
-                                        <tr key={user.id} className="border-b text-sm text-left">
-                                            <td className="px-4 py-2">{user.id.slice(0, 8)}</td>
-                                            <td className="px-4 py-2">{user.name}</td>
-                                            <td className="px-4 py-2">{user.email}</td>
-                                            <td className="px-4 py-2">
+                    {/* Mobile Card View */}
+                    <div className="block md:hidden px-4 space-y-4">
+                        {users.map(user => (
+                            <div key={user.id} className="bg-gray-800 rounded-lg p-4 space-y-3 shadow-lg border border-gray-700">
+                                <div className="flex justify-between items-start">
+                                    <div className="space-y-1">
+                                        <p className="text-xs text-gray-400">ID</p>
+                                        <p className="text-sm font-mono text-gray-200">{user.id.slice(0, 8)}</p>
+                                    </div>
+                                    <div className="flex-shrink-0">
+                                        {user.role === "ADMIN" && user.name === session.user.name ? (
+                                            <PlaceholderDeleteUserButton />
+                                        ) : (
+                                            <DeleteButton userId={user.id} />
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-gray-400">Name</p>
+                                    <p className="text-sm font-medium text-white">{user.name}</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-gray-400">Email</p>
+                                    <p className="text-sm text-gray-200 break-all">{user.email}</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs text-gray-400">Role</p>
+                                    <UserRoleSelect userId={user.id} role={user.role as Role} />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Tablet & Desktop Table View */}
+                    <div className="hidden md:block container mx-auto px-4 lg:px-8 max-w-7xl">
+                        <div className="overflow-x-auto rounded-lg border border-gray-700 shadow-xl">
+                            <table className="w-full border-collapse">
+                                <thead className="bg-gray-800">
+                                    <tr className="text-left">
+                                        <th className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-semibold text-gray-300 uppercase tracking-wider">ID</th>
+                                        <th className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-semibold text-gray-300 uppercase tracking-wider">Name</th>
+                                        <th className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-semibold text-gray-300 uppercase tracking-wider">Email</th>
+                                        <th className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-semibold text-gray-300 uppercase tracking-wider">Role</th>
+                                        <th className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-semibold text-gray-300 uppercase tracking-wider text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-gray-900 divide-y divide-gray-700">
+                                    {users.map(user => (
+                                        <tr key={user.id} className="hover:bg-gray-800 transition-colors duration-150">
+                                            <td className="px-4 lg:px-6 py-4 text-xs lg:text-sm font-mono text-gray-400">{user.id.slice(0, 8)}</td>
+                                            <td className="px-4 lg:px-6 py-4 text-sm lg:text-base font-medium text-white">{user.name}</td>
+                                            <td className="px-4 lg:px-6 py-4 text-xs lg:text-sm text-gray-300">{user.email}</td>
+                                            <td className="px-4 lg:px-6 py-4">
                                                 <UserRoleSelect userId={user.id} role={user.role as Role} />
                                             </td>
-                                            <td className="px-4 py-2 ">
-                                                {
-                                                    user.role === "ADMIN" && user.name === session.user.name ? (
-                                                        <PlaceholderDeleteUserButton />
-                                                    ) : (
-                                                        <DeleteButton userId={user.id} />
-                                                    )
-                                                }
+                                            <td className="px-4 lg:px-6 py-4 text-center">
+                                                {user.role === "ADMIN" && user.name === session.user.name ? (
+                                                    <PlaceholderDeleteUserButton />
+                                                ) : (
+                                                    <DeleteButton userId={user.id} />
+                                                )}
                                             </td>
                                         </tr>
-
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </>

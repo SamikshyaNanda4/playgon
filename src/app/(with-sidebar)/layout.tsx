@@ -58,7 +58,7 @@ export default async function Layout(
                     {/* only this part scrolls */}
                     <div className="flex-1 overflow-y-auto">
                         <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6 px-4">
-                            <Suspense fallback= {<>Loading...</>}>
+                            <Suspense fallback={<>Loading...</>}>
                                 {children}
                             </Suspense>
                         </div>
